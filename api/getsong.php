@@ -1,5 +1,6 @@
 <?php
 $station = $_GET['station'];
+error_reporting(0);
 header('Content-Type: application/json');
 if($station == "TRAP.FM"){
     $page = file_get_contents('https://trap.fm/pages/side_tracklist.php');
