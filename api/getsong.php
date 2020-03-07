@@ -67,6 +67,26 @@ if($station == "TRAP.FM"){
     $tna = $obj['channel-5']['artist']." - ".$obj['channel-5']['title'];
     $output['title'] = $tna;
     echo json_encode($output, JSON_PRETTY_PRINT);
+}elseif($station == "BigFM"){
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_URL, 'https://api.radio.de/info/v2/search/nowplaying?_=1583622313369&apikey=d0c95d28a9a899c628c35fa959e9e0ee3c1b924c&numberoftitles=1&station=1444');
+    $result = curl_exec($ch);
+    curl_close($ch);
+    $obj = json_decode($result, true);
+    $output['title'] = $obj[0]['streamTitle'];
+    echo json_encode($output, JSON_PRETTY_PRINT);
+}elseif($station == "BigFMMashup"){
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_URL, 'https://api.radio.de/info/v2/search/nowplaying?_=1583623209134&apikey=d0c95d28a9a899c628c35fa959e9e0ee3c1b924c&numberoftitles=1&station=38268');
+    $result = curl_exec($ch);
+    curl_close($ch);
+    $obj = json_decode($result, true);
+	$output['title'] = $obj[0]['streamTitle'];
+    echo json_encode($output, JSON_PRETTY_PRINT);
 }else{
     $output['title'] = $station;
     echo json_encode($output, JSON_PRETTY_PRINT);
