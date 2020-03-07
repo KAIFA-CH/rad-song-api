@@ -67,7 +67,7 @@ if($station == "TRAP.FM"){
     $tna = $obj['channel-5']['artist']." - ".$obj['channel-5']['title'];
     $output['title'] = $tna;
     echo json_encode($output, JSON_PRETTY_PRINT);
-}elseif($station == "BigFM"){
+}elseif($station == "bigFM"){
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -77,7 +77,7 @@ if($station == "TRAP.FM"){
     $obj = json_decode($result, true);
     $output['title'] = $obj[0]['streamTitle'];
     echo json_encode($output, JSON_PRETTY_PRINT);
-}elseif($station == "BigFMMashup"){
+}elseif($station == "bigFMMashup"){
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
