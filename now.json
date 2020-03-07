@@ -1,0 +1,10 @@
+{
+  "functions": {
+    "api/getsong.php": {
+      "runtime": "now-php@latest"
+    }
+  },
+  "routes": [
+    { "src": "/(.*)",  "dest": "/api/getsong.php" }
+  ]
+}
