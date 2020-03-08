@@ -2,9 +2,13 @@
   "functions": {
     "api/getsong.php": {
       "runtime": "now-php@0.0.9"
+    },
+	"api/index.php": {
+      "runtime": "now-php@0.0.9"
     }
   },
   "routes": [
     { "src": "/(?<name>[^/]+)",  "dest": "/api/getsong.php?station=$name" }
+	{ "src": "/(.*)",  "dest": "/api/index.php" }
   ]
 }
