@@ -97,6 +97,17 @@ if($station === "TRAP.FM"){
     $obj = json_decode($result, true);
     $output['title'] = $obj[0]['text'];
     echo json_encode($output, JSON_PRETTY_PRINT);
+}elseif($station === "HappyFMNC"){
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_URL, 'https://api.laut.fm/station/happyfmnightscore/current_song');
+    $result = curl_exec($ch);
+    curl_close($ch);
+    $obj = json_decode($result, true);
+	$tna = $obj['artist']['name']." - ".$obj['title'];
+    $output['title'] = $tna;
+    echo json_encode($output, JSON_PRETTY_PRINT);
 }else{
     $output['title'] = $station;
     echo json_encode($output, JSON_PRETTY_PRINT);
