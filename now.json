@@ -8,7 +8,7 @@
     }
   },
   "routes": [
-    { "src": "/(?<name>[^/]+)",  "dest": "/api/getsong.php?station=$name" }
+    { "src": "/(?<name>[^/]+)",  "dest": "/api/getsong.php?station=$name" },
 	{ "src": "/(.*)",  "dest": "/api/index.php" }
   ]
 }
