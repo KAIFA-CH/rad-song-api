@@ -2,18 +2,18 @@
 $station = $_GET['station'];
 error_reporting(0);
 header('Content-Type: application/json');
-if($station == "TRAP.FM"){
+if($station === "TRAP.FM"){
     $page = file_get_contents('https://trap.fm/pages/side_tracklist.php');
     $doc = new DOMDocument;
     $doc->loadHTML($page);
     $title = $doc->getElementById('current_song');
     $output['title'] = $title->childNodes->item(3)->nodeValue;
     echo json_encode($output, JSON_PRETTY_PRINT);
-}elseif($station == "1LiveDiggi"){
+}elseif($station === "1LiveDiggi"){
     $text = file_get_contents('https://www.wdr.de/radio/radiotext/streamtitle_1live_diggi.txt');
     $output['title'] = $text;
     echo json_encode($output, JSON_PRETTY_PRINT);
-}elseif($station == "JAM.FM"){
+}elseif($station === "JAM.FM"){
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -24,7 +24,7 @@ if($station == "TRAP.FM"){
     $tna = $obj[1]['playHistories'][0]['track']['artist']." - ".$obj[1]['playHistories'][0]['track']['title'];
     $output['title'] = $tna;
     echo json_encode($output, JSON_PRETTY_PRINT);
-}elseif($station == "Anison.FM"){
+}elseif($station === "Anison.FM"){
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -34,7 +34,7 @@ if($station == "TRAP.FM"){
     $obj = json_decode($result, true);
     $output['title'] = $obj['Header']['Subtitle'];
     echo json_encode($output, JSON_PRETTY_PRINT);
-}elseif($station == "Kibo.FM"){
+}elseif($station === "Kibo.FM"){
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -45,7 +45,7 @@ if($station == "TRAP.FM"){
     $tna = $obj['interpret']." - ".$obj['titel'];
     $output['title'] = $tna;
     echo json_encode($output, JSON_PRETTY_PRINT);
-}elseif($station == "TruckersFM"){
+}elseif($station === "TruckersFM"){
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -56,7 +56,7 @@ if($station == "TRAP.FM"){
     $tna = $obj['artist']." - ".$obj['title'];
     $output['title'] = $tna;
     echo json_encode($output, JSON_PRETTY_PRINT);
-}elseif($station == "ILoveMashup"){
+}elseif($station === "ILoveMashup"){
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -67,7 +67,7 @@ if($station == "TRAP.FM"){
     $tna = $obj['channel-5']['artist']." - ".$obj['channel-5']['title'];
     $output['title'] = $tna;
     echo json_encode($output, JSON_PRETTY_PRINT);
-}elseif($station == "bigFM"){
+}elseif($station === "bigFM"){
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -77,7 +77,7 @@ if($station == "TRAP.FM"){
     $obj = json_decode($result, true);
     $output['title'] = $obj[0]['streamTitle'];
     echo json_encode($output, JSON_PRETTY_PRINT);
-}elseif($station == "bigFMMashup"){
+}elseif($station === "bigFMMashup"){
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -87,7 +87,7 @@ if($station == "TRAP.FM"){
     $obj = json_decode($result, true);
 	$output['title'] = $obj[0]['streamTitle'];
     echo json_encode($output, JSON_PRETTY_PRINT);
-}elseif($station == "RadioRur"){
+}elseif($station === "RadioRur"){
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
