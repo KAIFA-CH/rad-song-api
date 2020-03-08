@@ -34,17 +34,6 @@ if($station === "TRAP.FM"){
     $obj = json_decode($result, true);
     $output['title'] = $obj['Header']['Subtitle'];
     echo json_encode($output, JSON_PRETTY_PRINT);
-}elseif($station === "Kibo.FM"){
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_URL, 'https://kibo.fm/include/modules/radioinfo.php');
-    $result = curl_exec($ch);
-    curl_close($ch);
-    $obj = json_decode($result, true);
-    $tna = $obj['interpret']." - ".$obj['titel'];
-    $output['title'] = $tna;
-    echo json_encode($output, JSON_PRETTY_PRINT);
 }elseif($station === "TruckersFM"){
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
