@@ -126,7 +126,7 @@ if($station === "TRAP.FM"){
     $result = curl_exec($ch);
     curl_close($ch);
     $obj = json_decode($result, true);
-	$tna = $obj['jsonpcallback'][0]['artist_name']." - ".$obj['jsonpcallback'][0]['song_name'];
+	$tna = $obj['artist_name']." - ".$obj['song_name'];
 	$output['title'] = $tna;
     echo json_encode($output, JSON_PRETTY_PRINT);
 }else{
