@@ -128,6 +128,16 @@ if($station === "TRAP.FM"){
     $obj = json_decode($result, true);
 	$output['title'] = $obj['song'];
     echo json_encode($output, JSON_PRETTY_PRINT);
+}elseif($station === "AsiaDreamJClub"){
+	$ch = curl_init();
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_URL, 'http://player.abovecast.com/streamdata.php?h=agnes.torontocast.com&p=8051&i=1&https=0&f=v2&c=399228');
+    $result = curl_exec($ch);
+    curl_close($ch);
+    $obj = json_decode($result, true);
+	$output['title'] = $obj['song'];
+    echo json_encode($output, JSON_PRETTY_PRINT);
 }else{
     $output['title'] = $station;
     echo json_encode($output, JSON_PRETTY_PRINT);
