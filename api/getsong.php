@@ -118,8 +118,15 @@ if($station === "TRAP.FM"){
     $obj = json_decode($result, true);
 	$output['title'] = $obj['Header']['Subtitle'];
     echo json_encode($output, JSON_PRETTY_PRINT);
-}elseif($station === "101.1BigFM"){
-	$output['title'] = "N/A";
+}elseif($station === "AsiaDreamJHits"){
+	$ch = curl_init();
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_URL, 'http://player.abovecast.com/streamdata.php?h=bluford.torontocast.com&p=8526&i=1&https=0&f=v2&c=900613');
+    $result = curl_exec($ch);
+    curl_close($ch);
+    $obj = json_decode($result, true);
+	$output['title'] = $obj['song'];
     echo json_encode($output, JSON_PRETTY_PRINT);
 }else{
     $output['title'] = $station;
