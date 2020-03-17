@@ -3,7 +3,7 @@
     "api/getsong.php": {
       "runtime": "now-php@0.0.9"
     },
-	"api/index.php": {
+    "api/index.php": {
       "runtime": "now-php@0.0.9"
     },
     "api/search.php": {
@@ -12,7 +12,8 @@
   },
   "routes": [
     { "src": "/(?<name>[^/]+)",  "dest": "/api/getsong.php?station=$name" },
-	{ "src": "/",  "dest": "/api/index.php" },
-    { "src": "/search/(?<name>[^/]+)",  "dest": "/api/search.php?input=$name" }
+    { "src": "/",  "dest": "/api/index.php" },
+    { "src": "/search/(?<name>[^/]+)",  "dest": "/api/search.php?input=$name" },
+    { "src": "/search/",  "dest": "/api/search.php" }
   ]
 }
