@@ -12,7 +12,7 @@
   },
   "routes": [
     { "src": "/(?<name>[^/]+)",  "dest": "/api/getsong.php?station=$name" },
-	{ "src": "/(.*)",  "dest": "/api/index.php" },
+	{ "src": "/",  "dest": "/api/index.php" },
     { "src": "/search/(?<name>[^/]+)",  "dest": "/api/search.php?input=$name" }
   ]
 }
