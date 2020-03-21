@@ -138,6 +138,17 @@ if($station === "TRAP.FM"){
     $obj = json_decode($result, true);
 	$output['title'] = $obj['song'];
     echo json_encode($output, JSON_PRETTY_PRINT);
+}elseif($station === "Q102"){
+	$ch = curl_init();
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_URL, 'https://live.wkrq.com/wp-content/plugins/hubbard-listen-live/api/hll_cues_get.php');
+    $result = curl_exec($ch);
+    curl_close($ch);
+    $obj = json_decode($result, true);
+	$tna = $obj['data']['response'][0]['data']['artist']." - ".$obj['data']['response'][0]['data']['description'];
+    $output['title'] = $tna;
+    echo json_encode($output, JSON_PRETTY_PRINT);
 }else{
     $output['title'] = $station;
     echo json_encode($output, JSON_PRETTY_PRINT);
