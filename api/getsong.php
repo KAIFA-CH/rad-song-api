@@ -149,6 +149,16 @@ if($station === "TRAP.FM"){
 	$tna = $obj['data']['response'][0]['data']['artist']." - ".$obj['data']['response'][0]['data']['description'];
     $output['title'] = $tna;
     echo json_encode($output, JSON_PRETTY_PRINT);
+}elseif($station === "VIBEROOM"){
+	$ch = curl_init();
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_URL, 'https://user8017.a7.radioheart.ru/api/json/?userlogin=user8017&api=lasttrack&count=1');
+    $result = curl_exec($ch);
+    curl_close($ch);
+    $obj = json_decode($result, true);
+    $output['title'] = $obj['name'];
+    echo json_encode($output, JSON_PRETTY_PRINT);
 }else{
     $output['title'] = $station;
     echo json_encode($output, JSON_PRETTY_PRINT);
