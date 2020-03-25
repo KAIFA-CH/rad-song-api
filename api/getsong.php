@@ -159,7 +159,7 @@ if($station === "TRAP.FM"){
     $obj = json_decode($result, true);
     $output['title'] = $obj[0]['name'];
     echo json_encode($output, JSON_PRETTY_PRINT);
-}elseif($station === "Gensokoyo"){
+}elseif($station === "Gensokyo"){
 	$xml=simplexml_load_file("https://gensokyoradio.net/xml/") or die("Error: Cannot create object");
 	$output['title'] = $xml->SONGINFO->ARTIST . " - " . $xml->SONGINFO->TITLE;
     echo json_encode($output, JSON_PRETTY_PRINT);
