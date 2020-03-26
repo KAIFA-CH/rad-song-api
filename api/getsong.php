@@ -163,6 +163,16 @@ if($station === "TRAP.FM"){
 	$xml=simplexml_load_file("https://gensokyoradio.net/xml/") or die("Error: Cannot create object");
 	$output['title'] = $xml->SONGINFO->ARTIST . " - " . $xml->SONGINFO->TITLE;
     echo json_encode($output, JSON_PRETTY_PRINT);
+}elseif($station === "freshsound"){
+	$ch = curl_init();
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_URL, 'https://feed.tunein.com/profiles/s278846/nowPlaying');
+    $result = curl_exec($ch);
+    curl_close($ch);
+    $obj = json_decode($result, true);
+    $output['title'] = $obj['Header']['Subtitle'];
+    echo json_encode($output, JSON_PRETTY_PRINT);
 }else{
     $output['title'] = $station;
     echo json_encode($output, JSON_PRETTY_PRINT);
