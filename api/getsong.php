@@ -128,15 +128,15 @@ if($station === "TRAP.FM"){
     $obj = json_decode($result, true);
 	$output['title'] = $obj['song'];
     echo json_encode($output, JSON_PRETTY_PRINT);
-}elseif($station === "AsiaDreamJClub"){
+}elseif($station === "Y100WNCY"){
 	$ch = curl_init();
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_URL, 'http://player.abovecast.com/streamdata.php?h=agnes.torontocast.com&p=8051&i=1&https=0&f=v2&c=399228');
+    curl_setopt($ch, CURLOPT_URL, 'https://api.tunegenie.com/v1/brand/nowplaying/?apiid=m2g_bar&b=wncy&count=1');
     $result = curl_exec($ch);
     curl_close($ch);
     $obj = json_decode($result, true);
-	$output['title'] = $obj['song'];
+	$output['title'] = $obj['response']['artist'] . " - " . $obj['response']['song'];
     echo json_encode($output, JSON_PRETTY_PRINT);
 }elseif($station === "Q102"){
 	$ch = curl_init();
