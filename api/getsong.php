@@ -136,7 +136,7 @@ if($station === "TRAP.FM"){
     $result = curl_exec($ch);
     curl_close($ch);
     $obj = json_decode($result, true);
-	$output['title'] = $obj['response']['artist'] . " - " . $obj['response']['song'];
+	$output['title'] = $obj['response'][0]['artist'] . " - " . $obj['response'][0]['song'];
     echo json_encode($output, JSON_PRETTY_PRINT);
 }elseif($station === "Q102"){
 	$ch = curl_init();
