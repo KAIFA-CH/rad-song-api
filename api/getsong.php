@@ -184,6 +184,17 @@ if($station === "TRAP.FM"){
     $tna = $obj['channel-1']['artist']." - ".$obj['channel-1']['title'];
     $output['title'] = $tna;
 	echo json_encode($output, JSON_PRETTY_PRINT);
+}elseif($station === "ILoveHipHop"){
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_URL, 'https://www.ilovemusic.de/typo3conf/ext/ep_channel/Scripts/playlist.php');
+    $result = curl_exec($ch);
+    curl_close($ch);
+    $obj = json_decode($result, true);
+    $tna = $obj['channel-4']['artist']." - ".$obj['channel-4']['title'];
+    $output['title'] = $tna;
+	echo json_encode($output, JSON_PRETTY_PRINT);
 }else{
     $output['title'] = $station;
     echo json_encode($output, JSON_PRETTY_PRINT);
