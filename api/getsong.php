@@ -195,6 +195,17 @@ if($station === "TRAP.FM"){
     $tna = $obj['channel-4']['artist']." - ".$obj['channel-4']['title'];
     $output['title'] = $tna;
 	echo json_encode($output, JSON_PRETTY_PRINT);
+}elseif($station === "EuropaFM"){
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_URL, 'https://www.europafm.ro/track_info.json');
+    $result = curl_exec($ch);
+    curl_close($ch);
+    $obj = json_decode($result, true);
+    $tna = $obj['songs'][0]['artist']." - ".$obj['songs'][0]['title'];
+    $output['title'] = $tna;
+	echo json_encode($output, JSON_PRETTY_PRINT);
 }else{
     $output['title'] = $station;
     echo json_encode($output, JSON_PRETTY_PRINT);
