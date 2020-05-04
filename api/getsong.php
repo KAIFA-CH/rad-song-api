@@ -203,8 +203,29 @@ if($station === "TRAP.FM"){
     $result = curl_exec($ch);
     curl_close($ch);
     $obj = json_decode($result, true);
-    $tna = $obj['songs'][0]['artist']." - ".$obj['songs'][0]['title'];
+    $tna = $obj['songs'][0]['artist']." - ".$obj['songs'][0]['track'];
     $output['title'] = $tna;
+	echo json_encode($output, JSON_PRETTY_PRINT);
+}elseif($station === "VirginRadioRO"){
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_URL, 'https://virginradio.ro/track_info.json');
+    $result = curl_exec($ch);
+    curl_close($ch);
+    $obj = json_decode($result, true);
+    $tna = $obj['songs'][0]['artist']." - ".$obj['songs'][0]['track'];
+    $output['title'] = $tna;
+	echo json_encode($output, JSON_PRETTY_PRINT);
+}elseif($station === "ProFMRO"){
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_URL, 'https://www.profm.ro/api-current-song/2918');
+    $result = curl_exec($ch);
+    curl_close($ch);
+    $obj = json_decode($result, true);
+    $output['title'] = $obj['songs'][0]['song'];
 	echo json_encode($output, JSON_PRETTY_PRINT);
 }else{
     $output['title'] = $station;
