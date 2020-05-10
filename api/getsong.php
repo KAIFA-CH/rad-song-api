@@ -227,6 +227,17 @@ if($station === "TRAP.FM"){
     $obj = json_decode($result, true);
     $output['title'] = $obj['songs'][0]['song'];
 	echo json_encode($output, JSON_PRETTY_PRINT);
+}elseif($station === "Trancebase"){
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_URL, 'https://api.tb-group.fm/v1/tracklist/5?count=1');
+    $result = curl_exec($ch);
+    curl_close($ch);
+    $obj = json_decode($result, true);
+    $tna = $obj[0]['a']." - ".$obj[0]['t'];
+    $output['title'] = $tna;
+	echo json_encode($output, JSON_PRETTY_PRINT);
 }else{
     $output['title'] = $station;
     echo json_encode($output, JSON_PRETTY_PRINT);
