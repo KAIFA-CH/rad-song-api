@@ -239,6 +239,6 @@ if($station === "TRAP.FM"){
     $output['title'] = $tna;
 	echo json_encode($output, JSON_PRETTY_PRINT);
 }else{
-    $output['title'] = $station;
+    $output['title'] = "No Data Available";
     echo json_encode($output, JSON_PRETTY_PRINT);
 }
