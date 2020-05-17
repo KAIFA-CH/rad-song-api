@@ -238,6 +238,17 @@ if($station === "TRAP.FM"){
     $tna = $obj[0]['a']." - ".$obj[0]['t'];
     $output['title'] = $tna;
 	echo json_encode($output, JSON_PRETTY_PRINT);
+}elseif($station === "GAYFM"){
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: HMAC radiogermany_web:-SqSQ1jGtA0HPocn_XGUJW7ACOtLhRA-gcg4MNB92Bc'));
+    curl_setopt($ch, CURLOPT_URL, 'http://metadata-api.mytuner.mobi/api/v1/metadata-api/web/song-history?app_codename=radiogermany_web&radio_id=410270&time=1589704011993');
+    $result = curl_exec($ch);
+    curl_close($ch);
+    $obj = json_decode($result, true);
+    $output['title'] = $obj['song_history'][19]['metadata'];
+	echo json_encode($output, JSON_PRETTY_PRINT);
 }else{
     $output['title'] = "No Data Available";
     echo json_encode($output, JSON_PRETTY_PRINT);
