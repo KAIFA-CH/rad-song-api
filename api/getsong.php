@@ -287,7 +287,7 @@ if($station === "TRAP.FM"){
     $result = curl_exec($ch);
     curl_close($ch);
     $obj = json_decode($result, true);
-	$output['title'] = $obj[0]['playlist'][0]['song'] // + ' - ' + $obj[0]['playlist'][0]['song']['title'];
+	$output['title'] = $obj[0]['playlist'][0]['song']; // + ' - ' + $obj[0]['playlist'][0]['song']['title'];
     echo json_encode($output, JSON_PRETTY_PRINT);
 }else{
     $output['title'] = "No Data Available";
