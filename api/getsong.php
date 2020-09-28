@@ -268,6 +268,26 @@ if($station === "TRAP.FM"){
     $obj = json_decode($result, true);
 	$output['title'] = $obj[0]['playlist'][0]['song']['artist']." - ".$obj[0]['playlist'][0]['song']['title'];
     echo json_encode($output, JSON_PRETTY_PRINT);
+}elseif($station === "Wacken%20Radio"){
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_URL, 'https://prod.radio-api.net/stations/now-playing?stationIds=wackenradio');
+    $result = curl_exec($ch);
+    curl_close($ch);
+    $obj = json_decode($result, true);
+	$output['title'] = $obj[0]['title'];
+    echo json_encode($output, JSON_PRETTY_PRINT);
+}elseif($station === "Ostseewelle"){
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_URL, 'https://feed.tunein.com/profiles/s115468/nowPlaying');
+    $result = curl_exec($ch);
+    curl_close($ch);
+    $obj = json_decode($result, true);
+	$output['title'] = $obj['Header']['Subtitle'];
+    echo json_encode($output, JSON_PRETTY_PRINT);
 }else{
     $output['title'] = "No Data Available";
     echo json_encode($output, JSON_PRETTY_PRINT);
