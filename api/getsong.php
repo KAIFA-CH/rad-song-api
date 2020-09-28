@@ -288,6 +288,10 @@ if($station === "TRAP.FM"){
     $obj = json_decode($result, true);
 	$output['title'] = $obj['Header']['Subtitle'];
     echo json_encode($output, JSON_PRETTY_PRINT);
+}elseif($station === "Island106"){
+    $xml=simplexml_load_file("https://streamdb6web.securenetsystems.net/player_status_update/WILN.xml") or die("Error: Cannot create object");
+    $output['title'] = $xml->artist . " - " . $xml->title;
+    echo json_encode($output, JSON_PRETTY_PRINT);
 }else{
     $output['title'] = "No Data Available";
     echo json_encode($output, JSON_PRETTY_PRINT);
