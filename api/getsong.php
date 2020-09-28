@@ -163,16 +163,6 @@ if($station === "TRAP.FM"){
 	$xml=simplexml_load_file("https://gensokyoradio.net/xml/") or die("Error: Cannot create object");
 	$output['title'] = $xml->SONGINFO->ARTIST . " - " . $xml->SONGINFO->TITLE;
     echo json_encode($output, JSON_PRETTY_PRINT);
-}elseif($station === "freshsound"){
-	$ch = curl_init();
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_URL, 'https://feed.tunein.com/profiles/s278846/nowPlaying');
-    $result = curl_exec($ch);
-    curl_close($ch);
-    $obj = json_decode($result, true);
-    $output['title'] = $obj['Header']['Subtitle'];
-    echo json_encode($output, JSON_PRETTY_PRINT);
 }elseif($station === "ILoveRadio"){
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -237,17 +227,6 @@ if($station === "TRAP.FM"){
     $obj = json_decode($result, true);
     $tna = $obj[0]['a']." - ".$obj[0]['t'];
     $output['title'] = $tna;
-	echo json_encode($output, JSON_PRETTY_PRINT);
-}elseif($station === "GAYFM"){
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: HMAC radiogermany_web:-SqSQ1jGtA0HPocn_XGUJW7ACOtLhRA-gcg4MNB92Bc'));
-    curl_setopt($ch, CURLOPT_URL, 'http://metadata-api.mytuner.mobi/api/v1/metadata-api/web/song-history?app_codename=radiogermany_web&radio_id=410270&time=1589704011993');
-    $result = curl_exec($ch);
-    curl_close($ch);
-    $obj = json_decode($result, true);
-    $output['title'] = $obj['song_history'][19]['metadata'];
 	echo json_encode($output, JSON_PRETTY_PRINT);
 }elseif($station === "OpenFMKlub"){
     $ch = curl_init();
