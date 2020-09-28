@@ -292,6 +292,12 @@ if($station === "TRAP.FM"){
     $xml=simplexml_load_file("https://streamdb6web.securenetsystems.net/player_status_update/WILN.xml") or die("Error: Cannot create object");
     $output['title'] = $xml->artist . " - " . $xml->title;
     echo json_encode($output, JSON_PRETTY_PRINT);
+}elseif($station === "Big 101.1"){
+    $page = file_get_contents('https://globalnewselection.s3.amazonaws.com/fm-playlist/results/CIQBFM_np.js');
+    $subbed = substr($page, 14, -1);
+    $obj = json_decode($subbed, true);
+    $output['title'] = $obj['artist_name'] . " - " . $obj['song_name'];
+    echo json_encode($output, JSON_PRETTY_PRINT);
 }else{
     $output['title'] = "No Data Available";
     echo json_encode($output, JSON_PRETTY_PRINT);
