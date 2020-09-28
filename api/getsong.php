@@ -268,7 +268,7 @@ if($station === "TRAP.FM"){
     $obj = json_decode($result, true);
 	$output['title'] = $obj[0]['playlist'][0]['song']['artist']." - ".$obj[0]['playlist'][0]['song']['title'];
     echo json_encode($output, JSON_PRETTY_PRINT);
-}elseif($station === "Wacken%20Radio"){
+}elseif($station === "Wacken Radio"){
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
