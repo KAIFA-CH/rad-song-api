@@ -1,4 +1,4 @@
 <?php
-header('Location: https://discordapp.com/oauth2/authorize?client_id=685408280679677993&scope=bot&permissions=8');
+header('Location: https://top.gg/bot/685408280679677993');
 exit;
 ?>
