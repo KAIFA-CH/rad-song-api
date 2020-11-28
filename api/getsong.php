@@ -298,6 +298,16 @@ if($station === "TRAP.FM"){
     $obj = json_decode($subbed, true);
     $output['title'] = $obj['artist_name'] . " - " . $obj['song_name'];
     echo json_encode($output, JSON_PRETTY_PRINT);
+}elseif($station === "Radio886.AT"){
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_URL, 'https://meta.radio886.at/886/6457');
+    $result = curl_exec($ch);
+    curl_close($ch);
+    $obj = json_decode($result, true);
+    $output['title'] = $obj['data'][3]['name'] . " - " . $obj['data'][3]['title'];
+    echo json_encode($output, JSON_PRETTY_PRINT);
 }else{
     $output['title'] = "No Data Available";
     echo json_encode($output, JSON_PRETTY_PRINT);
