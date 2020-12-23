@@ -328,6 +328,10 @@ if($station === "TRAP.FM"){
     $obj = json_decode($result, true);
     $output['title'] = $obj['aktuell'][1] . ' - ' . $obj['aktuell'][2];
     echo json_encode($output, JSON_PRETTY_PRINT);
+}elseif($station === "Energy-Berlin"){
+    $xml=simplexml_load_file("https://www.energy.de/coverflow.xml") or die("Error: Cannot create object");
+    $output['title'] = $xml->coverwrapper[1]->interpret . " - " . $xml->coverwrapper[1]->song;
+    echo json_encode($output, JSON_PRETTY_PRINT);
 }else{
     $output['title'] = "No Data Available";
     echo json_encode($output, JSON_PRETTY_PRINT);
