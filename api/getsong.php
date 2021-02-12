@@ -332,6 +332,15 @@ if($station === "TRAP.FM"){
     $xml=simplexml_load_file("https://www.energy.de/coverflow.xml") or die("Error: Cannot create object");
     $output['title'] = $xml->coverwrapper[1]->interpret . " - " . $xml->coverwrapper[1]->song;
     echo json_encode($output, JSON_PRETTY_PRINT);
+}elseif($station === "RAD"){
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_URL, 'https://proxy.zeno.fm/api/stations/ramcxzk42k8uv/now_playing/');
+    $result = curl_exec($ch);
+    curl_close($ch);
+    $obj = json_decode($result, true);
+    $output['title'] = $obj['artist'] . ' - ' . $obj['title'];
 }else{
     $output['title'] = "No Data Available";
     echo json_encode($output, JSON_PRETTY_PRINT);
